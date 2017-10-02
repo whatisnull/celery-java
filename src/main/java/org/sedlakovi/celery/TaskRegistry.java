@@ -11,7 +11,9 @@ import java.util.function.Function;
 
 class TaskRegistry {
 
-    private static final Map<String, Task> TASKS = Streams
+    interface Task {}
+
+    private static final Map<String, TaskRegistry.Task> TASKS = Streams
             .stream(ServiceLoader.load(Task.class))
             .collect(ImmutableMap.toImmutableMap((v) -> v.getClass().getName(), Function.identity()));
 

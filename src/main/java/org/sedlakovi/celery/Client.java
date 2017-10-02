@@ -37,8 +37,8 @@ public class Client {
         this(channel, backend, "celery");
     }
 
-    public Future<?> submit(Class<? extends Task> taskClass, Object... args) throws IOException {
-        return submit(taskClass.getName(), args);
+    public Future<?> submit(Class<?> taskClass, String taskMethod, Object... args) throws IOException {
+        return submit(taskClass.getName() + "#" + taskMethod, args);
     }
 
     public Future<?> submit(String name, Object... args) throws IOException {
